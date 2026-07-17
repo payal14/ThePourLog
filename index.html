@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pour Log — Coffee Gear, Field-Tested</title>
+<meta name="description" content="Hands-on reviews of pour-over kettles, grinders, and scales, with roast-level style dials instead of star ratings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241a12;
+    --paper:#efe6d6;
+    --paper-line:#ddd0b6;
+    --card:#f8f2e6;
+    --roast:#c1602b;
+    --roast-dark:#8f3f1c;
+    --sage:#5f7a5c;
+    --muted:#7a6c58;
+    --white:#fffdf8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    background-image:
+      linear-gradient(var(--paper-line) 1px, transparent 1px);
+    background-size: 100% 42px;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(239,230,214,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--paper-line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 28px;}
+  .logo{
+    font-family:'Fraunces', serif; font-weight:700; font-size:1.3rem;
+    letter-spacing:-0.01em;
+  }
+  .logo span{color:var(--roast);}
+  .nav-links{display:flex; gap:28px; font-family:'JetBrains Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; text-transform:uppercase;}
+  .nav-links a{text-decoration:none; color:var(--muted); border-bottom:1px solid transparent; padding-bottom:2px; transition:.2s;}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--ink); border-color:var(--roast);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:88px 0 64px; position:relative;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--roast-dark); display:flex; align-items:center; gap:10px; margin-bottom:22px;
+  }
+  .eyebrow::before{content:''; width:26px; height:1px; background:var(--roast-dark);}
+  h1{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(2.4rem, 6vw, 4.2rem);
+    line-height:1.02; letter-spacing:-0.02em; max-width:820px;
+  }
+  h1 em{font-style:italic; color:var(--roast);}
+  .hero-sub{
+    max-width:520px; margin-top:22px; font-size:1.05rem; color:var(--muted); line-height:1.6;
+  }
+  .hero-meta{
+    display:flex; gap:36px; margin-top:44px; flex-wrap:wrap;
+  }
+  .hero-meta div{font-family:'JetBrains Mono', monospace;}
+  .hero-meta .num{font-size:1.6rem; font-weight:600; color:var(--ink);}
+  .hero-meta .label{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted);}
+
+  /* ---------- Disclosure strip ---------- */
+  .disclosure-strip{
+    background:var(--ink); color:var(--paper); font-family:'JetBrains Mono', monospace;
+    font-size:0.76rem; letter-spacing:0.02em; padding:10px 0; text-align:center;
+  }
+  .disclosure-strip a{text-decoration:underline; color:var(--paper);}
+
+  /* ---------- Filters ---------- */
+  .filters{
+    display:flex; gap:10px; flex-wrap:wrap; margin:56px 0 32px;
+    border-top:1px solid var(--paper-line); border-bottom:1px solid var(--paper-line);
+    padding:18px 0;
+  }
+  .filter-btn{
+    font-family:'JetBrains Mono', monospace; font-size:0.76rem; text-transform:uppercase; letter-spacing:0.04em;
+    background:transparent; border:1px solid var(--paper-line); color:var(--muted);
+    padding:8px 16px; border-radius:100px; cursor:pointer; transition:.18s;
+  }
+  .filter-btn:hover{border-color:var(--roast); color:var(--ink);}
+  .filter-btn.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+
+  /* ---------- Product Grid ---------- */
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:22px; padding-bottom:80px;
+  }
+  .card{
+    background:var(--card); border:1px solid var(--paper-line); border-radius:6px;
+    padding:24px; display:flex; flex-direction:column; gap:14px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-3px); box-shadow:0 12px 24px -14px rgba(36,26,18,0.35);}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px;}
+  .card-cat{
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--sage); background:rgba(95,122,92,0.12); padding:3px 8px; border-radius:4px; white-space:nowrap;
+  }
+  .card h3{font-family:'Fraunces', serif; font-size:1.25rem; font-weight:600; line-height:1.25;}
+  .card p{font-size:0.9rem; color:var(--muted); line-height:1.55;}
+
+  /* Roast dial — signature element */
+  .roast-dial{display:flex; align-items:center; gap:10px; margin-top:2px;}
+  .roast-track{
+    flex:1; height:6px; border-radius:4px; background:linear-gradient(90deg, #e8c9a0, #8f3f1c);
+    position:relative;
+  }
+  .roast-marker{
+    position:absolute; top:50%; width:14px; height:14px; border-radius:50%;
+    background:var(--white); border:3px solid var(--ink); transform:translate(-50%,-50%);
+  }
+  .roast-label{font-family:'JetBrains Mono', monospace; font-size:0.68rem; color:var(--muted); white-space:nowrap;}
+
+  .card-footer{display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:8px;}
+  .price{font-family:'JetBrains Mono', monospace; font-weight:600; font-size:1rem;}
+  .buy-btn{
+    font-family:'JetBrains Mono', monospace; font-size:0.76rem; text-transform:uppercase; letter-spacing:0.03em;
+    background:var(--roast); color:var(--white); border:none; padding:10px 16px; border-radius:4px;
+    cursor:pointer; text-decoration:none; transition:.18s;
+  }
+  .buy-btn:hover{background:var(--roast-dark);}
+
+  /* ---------- About / signature strip ---------- */
+  .about{
+    padding:64px 0; border-top:1px solid var(--paper-line);
+    display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;
+  }
+  .about h2{font-family:'Fraunces', serif; font-size:1.9rem; font-weight:600; margin-bottom:16px; letter-spacing:-0.01em;}
+  .about p{color:var(--muted); line-height:1.7; font-size:0.95rem; margin-bottom:14px;}
+  .legend{
+    background:var(--card); border:1px solid var(--paper-line); border-radius:6px; padding:24px;
+  }
+  .legend h4{font-family:'JetBrains Mono', monospace; font-size:0.74rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); margin-bottom:16px;}
+  .legend-row{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .legend-row:last-child{margin-bottom:0;}
+  .legend-dot{width:10px; height:10px; border-radius:50%; flex-shrink:0;}
+  .legend-row span{font-size:0.85rem; color:var(--ink);}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--paper-line); padding:40px 0 60px;}
+  .footer-inner{display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; align-items:center;}
+  footer .fine{max-width:640px; font-size:0.78rem; color:var(--muted); line-height:1.6;}
+  footer .fine a{color:var(--roast-dark);}
+  .footer-logo{font-family:'Fraunces', serif; font-weight:700; font-size:1.1rem;}
+
+  @media (max-width: 720px){
+    .nav-links{display:none;}
+    .about{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .card{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="disclosure-strip">
+  As an Amazon Associate I earn from qualifying purchases. <a href="#about">Read our disclosure</a>
+</div>
+
+<header>
+  <div class="nav wrap">
+    <div class="logo">The <span>Pour</span> Log</div>
+    <nav class="nav-links">
+      <a href="#gear">Gear</a>
+      <a href="#about">About</a>
+      <a href="#footer">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Field notes from a home bar, since 2021</div>
+    <h1>We brew it before <em>we recommend it</em>.</h1>
+    <p class="hero-sub">Every kettle, grinder, and scale below has sat on our counter for at least three weeks. No press releases, no swag — just the gear worth your money, rated on how it actually performs, not how it photographs.</p>
+    <div class="hero-meta">
+      <div><div class="num">47</div><div class="label">Items tested</div></div>
+      <div><div class="num">3 wks</div><div class="label">Min. test time</div></div>
+      <div><div class="num">0</div><div class="label">Sponsored posts</div></div>
+    </div>
+  </section>
+
+  <section id="gear">
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="about" id="about">
+    <div>
+      <h2>Why a dial, not a star rating</h2>
+      <p>Five stars tells you nothing about a coffee tool — a kettle can be a "5" for control and a "2" for value. So instead we score every piece of gear on <strong>where it sits between "entry-level" and "obsessive,"</strong> the same way you'd read a roast level. Light means beginner-friendly and forgiving. Dark means built for people who already own a refractometer.</p>
+      <p>This site earns a small commission when you buy through our links, at no extra cost to you — that's what funds the coffee (and the gear) that makes these reviews possible.</p>
+    </div>
+    <div class="legend">
+      <h4>Reading the dial</h4>
+      <div class="legend-row"><div class="legend-dot" style="background:#e8c9a0;"></div><span>Light roast — beginner friendly, low fuss</span></div>
+      <div class="legend-row"><div class="legend-dot" style="background:#c1602b;"></div><span>Medium roast — some learning curve, worth it</span></div>
+      <div class="legend-row"><div class="legend-dot" style="background:#8f3f1c;"></div><span>Dark roast — built for the obsessive brewer</span></div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-logo">The Pour Log</div>
+    <p class="fine">As an Amazon Associate, The Pour Log earns from qualifying purchases. Prices and availability are accurate as of the date shown on each listing and are subject to change. This site is not operated by Amazon.com, Inc. or its affiliates. <a href="#">Full disclosure</a> · <a href="#">Privacy</a></p>
+  </div>
+</footer>
+
+<script>
+  // ---- Product data: swap this out with your own niche + real Amazon links ----
+  // Replace href with your real Amazon Associate link, e.g.
+  // https://www.amazon.com/dp/PRODUCT_ASIN?tag=YOUR-ASSOCIATE-ID
+  const products = [
+    { name: "Fellow Stagg EKG Kettle", cat: "Kettles", price: "$165", roast: 30,
+      desc: "Precise temperature hold and the best pour control we've tested at this price.",
+      href: "https://www.amazon.com/s?k=fellow+stagg+ekg+kettle&tag=youraffid-20" },
+    { name: "Hario V60 Buono Kettle", cat: "Kettles", price: "$45", roast: 15,
+      desc: "No screen, no fuss — the gooseneck that taught most of us to pour.",
+      href: "https://www.amazon.com/s?k=hario+buono+kettle&tag=youraffid-20" },
+    { name: "Baratza Encore ESP", cat: "Grinders", price: "$199", roast: 45,
+      desc: "Consistent grind size across espresso and pour-over with one dial.",
+      href: "https://www.amazon.com/s?k=baratza+encore+esp&tag=youraffid-20" },
+    { name: "1Zpresso J-Max Hand Grinder", cat: "Grinders", price: "$219", roast: 70,
+      desc: "Manual grinding for people who like the ritual as much as the result.",
+      href: "https://www.amazon.com/s?k=1zpresso+j-max&tag=youraffid-20" },
+    { name: "Acaia Pearl Scale", cat: "Scales", price: "$150", roast: 80,
+      desc: "Bluetooth flow-rate tracking for dialing in ratios to the gram.",
+      href: "https://www.amazon.com/s?k=acaia+pearl+scale&tag=youraffid-20" },
+    { name: "Timemore Black Mirror Basic", cat: "Scales", price: "$44", roast: 25,
+      desc: "A built-in timer and a reliable read — everything a beginner needs.",
+      href: "https://www.amazon.com/s?k=timemore+black+mirror&tag=youraffid-20" },
+    { name: "Chemex Classic 6-Cup", cat: "Brewers", price: "$48", roast: 10,
+      desc: "Clean, bright cups and a filter paper that does half the work for you.",
+      href: "https://www.amazon.com/s?k=chemex+6+cup&tag=youraffid-20" },
+    { name: "Orea V4 Brewer", cat: "Brewers", price: "$95", roast: 60,
+      desc: "Flat-bed geometry built for brewers who already have opinions about flow rate.",
+      href: "https://www.amazon.com/s?k=orea+v4+brewer&tag=youraffid-20" },
+  ];
+
+  const categories = ["All", ...new Set(products.map(p => p.cat))];
+  const filtersEl = document.getElementById('filters');
+  const gridEl = document.getElementById('grid');
+
+  function render(list){
+    gridEl.innerHTML = list.map(p => `
+      <article class="card">
+        <div class="card-top">
+          <h3>${p.name}</h3>
+          <span class="card-cat">${p.cat}</span>
+        </div>
+        <p>${p.desc}</p>
+        <div class="roast-dial">
+          <div class="roast-track"><div class="roast-marker" style="left:${p.roast}%;"></div></div>
+          <span class="roast-label">${p.roast < 34 ? 'Light' : p.roast < 67 ? 'Medium' : 'Dark'}</span>
+        </div>
+        <div class="card-footer">
+          <span class="price">${p.price}</span>
+          <a class="buy-btn" href="${p.href}" target="_blank" rel="nofollow sponsored noopener">View on Amazon</a>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  filtersEl.innerHTML = categories.map((c, i) =>
+    `<button class="filter-btn ${i===0 ? 'active' : ''}" data-cat="${c}">${c}</button>`
+  ).join('');
+
+  filtersEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if(!btn) return;
+    filtersEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    render(cat === "All" ? products : products.filter(p => p.cat === cat));
+  });
+
+  render(products);
+</script>
+
+</body>
+</html>
