@@ -82,7 +82,7 @@ function Blog() {
     <div className="min-h-screen bg-gray-100">
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-indigo-700 to-blue-700 text-white py-20">
+      <section className="bg-linear-to-r from-[#289eff] text-white py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
 
           <h1 className="text-5xl font-bold">

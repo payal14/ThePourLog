@@ -25,7 +25,7 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full bg-white shadow-md z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-        <h1 className="text-3xl font-bold text-blue-600">
+        <h1 className="text-3xl font-bold bg-linear-to-r from-[#289eff]">
           Nikita Mart
         </h1>
 

@@ -2,7 +2,7 @@ import SearchBar from "./SearchBar";
 
 const Hero = () => {
   return (
-    <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white pt-36 pb-24">
+    <section className="bg-linear-to-r from-[#289eff] text-white pt-36 pb-24">
 
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
 
