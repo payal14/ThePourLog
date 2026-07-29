@@ -189,7 +189,7 @@ const Deals = () => {
 
                 <div className="flex items-center gap-3 mt-5">
 
-                  <span className="text-3xl font-bold text-blue-600">
+                  <span className="text-3xl font-bold text-blue-500">
                     {deal.price}
                   </span>
 
@@ -201,7 +201,7 @@ const Deals = () => {
 <Link to={deal.path}>
                 <div className="flex gap-3 mt-8">
 
-                  <button className="flex-1 bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700">
+                  <button className="flex-1 bg-linear-to-r from-[#289eff] text-black py-3 rounded-xl hover:bg-blue-700">
                     Buy Now
                   </button>
 

@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
 
         <div className="mt-4 flex items-center gap-3">
 
-          <h2 className="text-2xl font-bold text-blue-600">
+          <h2 className="text-2xl font-bold text-blue-500">
             ₹{product.price}
           </h2>
 
@@ -44,7 +44,7 @@ const ProductCard = ({ product }) => {
 
         </div>
 <Link to={product.path}>
-        <button className="mt-6 w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700">
+        <button className="mt-6 w-full bg-linear-to-r from-[#289eff] text-black py-3 rounded-xl hover:bg-blue-700">
           Buy Now
         </button>
 </Link>
