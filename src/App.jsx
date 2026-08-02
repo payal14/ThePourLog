@@ -4,6 +4,8 @@ import Deals from "./pages/Deals";
 import Blog from "./pages/Blog";
 import Reviews from "./pages/Reviews";
 import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+    <Route path="/terms" element={<Terms />} />
       </Routes>
     </BrowserRouter>
   );

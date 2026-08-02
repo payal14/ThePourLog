@@ -12,6 +12,7 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -208,17 +209,17 @@ const Footer = () => {
 
         <div className="flex gap-6">
 
-          <a href="#" className="hover:text-blue-400">
+          <Link to="/privacy-policy" className="hover:text-blue-400">
             Privacy Policy
-          </a>
+          </Link>
 
-          <a href="#" className="hover:text-blue-400">
+          <Link to="/terms" className="hover:text-blue-400">
             Terms & Conditions
-          </a>
+          </Link>
 
-          <a href="#" className="hover:text-blue-400">
+          {/* <a href="#" className="hover:text-blue-400">
             Disclaimer
-          </a>
+          </a> */}
 
         </div>
 
